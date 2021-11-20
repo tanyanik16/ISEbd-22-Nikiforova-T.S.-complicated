@@ -12,10 +12,14 @@ namespace WindowsFormsApp1
 {
     public partial class FormTank : Form
     {
-        private TANK tank;
+        private ITransport tank;
         public FormTank()
         {
             InitializeComponent();
+            comboRod.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxType.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboRod.SelectedIndex = 2;
+            comboBoxType.SelectedIndex = 0;
         }
         private void Draw()
         {
@@ -27,11 +31,8 @@ namespace WindowsFormsApp1
         private void Create_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            int countRod = Convert.ToInt32(comboRod.SelectedItem);
-            tank = new TANK(rnd.Next(85, 205), rnd.Next(1000, 2000), Color.Blue,
-           Color.DarkGoldenrod, true, true, countRod); tank.SetPosition(rnd.Next(10, 100),
-           rnd.Next(10, 100), pictureBoxTanks.Width,
-           pictureBoxTanks.Height);
+            tank = new BasicTANK(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
+            tank.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTanks.Width, pictureBoxTanks.Height);
             Draw();
         }
         private void buttonMove_Click(object sender, EventArgs e)
@@ -56,6 +57,14 @@ namespace WindowsFormsApp1
             Draw();
         }
 
-       
+        private void buttonCreateModTank_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            tank = new TANK(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
+           Color.Red, comboRod.SelectedIndex, comboRod.SelectedIndex, comboBoxType.SelectedIndex);
+            tank.SetPosition(rnd.Next(50, 100), rnd.Next(50, 100), pictureBoxTanks.Width,
+           pictureBoxTanks.Height);
+            Draw();
+        }
     }
 }

@@ -36,13 +36,15 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonCreateModTank = new System.Windows.Forms.Button();
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTanks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(25, 12);
+            this.buttonCreate.Location = new System.Drawing.Point(638, 205);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(130, 32);
             this.buttonCreate.TabIndex = 0;
@@ -67,7 +69,7 @@
             "1",
             "2",
             "3"});
-            this.comboRod.Location = new System.Drawing.Point(177, 12);
+            this.comboRod.Location = new System.Drawing.Point(622, 246);
             this.comboRod.Margin = new System.Windows.Forms.Padding(4);
             this.comboRod.Name = "comboRod";
             this.comboRod.Size = new System.Drawing.Size(156, 24);
@@ -128,11 +130,37 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // buttonCreateModTank
+            // 
+            this.buttonCreateModTank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCreateModTank.Location = new System.Drawing.Point(640, 156);
+            this.buttonCreateModTank.Name = "buttonCreateModTank";
+            this.buttonCreateModTank.Size = new System.Drawing.Size(127, 43);
+            this.buttonCreateModTank.TabIndex = 7;
+            this.buttonCreateModTank.Text = "Создать мод.танк";
+            this.buttonCreateModTank.UseVisualStyleBackColor = true;
+            this.buttonCreateModTank.Click += new System.EventHandler(this.buttonCreateModTank_Click);
+            // 
+            // comboBoxType
+            // 
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Items.AddRange(new object[] {
+            "Круг",
+            "Квадрат",
+            "Треугольник"});
+            this.comboBoxType.Location = new System.Drawing.Point(622, 277);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(156, 24);
+            this.comboBoxType.TabIndex = 8;
+            this.comboBoxType.Text = "Тип орудия";
+            // 
             // FormTank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxType);
+            this.Controls.Add(this.buttonCreateModTank);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
@@ -159,6 +187,8 @@
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonCreateModTank;
+        private System.Windows.Forms.ComboBox comboBoxType;
     }
 }
 
