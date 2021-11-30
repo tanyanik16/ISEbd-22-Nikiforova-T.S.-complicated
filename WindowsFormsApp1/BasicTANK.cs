@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес автомобиля</param>
         /// <param name="mainColor">Основной цвет кузова</param>
-        public  BasicTANK(int maxSpeed, float weight, Color mainColor)
+        public  BasicTANK(Color mainColor, int maxSpeed, int weight)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;

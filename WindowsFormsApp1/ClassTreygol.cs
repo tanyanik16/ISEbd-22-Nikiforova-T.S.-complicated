@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
         private DirectionRod dopEnum;
         Color dopColor2;
         public int Wheel { set => dopEnum = (DirectionRod)value; }
+          public Color DopColor { private set; get; }
         public ClassTreygol(int x, Color dopColor2)
         {
             Wheel = x;
