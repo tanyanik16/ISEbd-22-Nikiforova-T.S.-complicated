@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    interface ITransport
+    public interface ITransport
     {/// <summary>
      /// Установка позиции
      /// </summary>

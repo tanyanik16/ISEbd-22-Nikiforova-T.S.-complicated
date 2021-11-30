@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class FormTank : Form
     {
-        private ITransport tank;
+         ITransport tank;
         public FormTank()
         {
             InitializeComponent();
@@ -20,6 +20,12 @@ namespace WindowsFormsApp1
             comboBoxType.DropDownStyle = ComboBoxStyle.DropDownList;
             comboRod.SelectedIndex = 2;
             comboBoxType.SelectedIndex = 0;
+        }
+        public void SetTank(ITransport tank)
+        {
+            this.tank = tank;
+            Draw();
+
         }
         private void Draw()
         {

@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    public class BasicTANK : Vehicle
+    public  class BasicTANK : Vehicle
     {
         /// <summary>
         /// Ширина отрисовки автомобиля
@@ -23,29 +23,13 @@ namespace WindowsFormsApp1
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес автомобиля</param>
         /// <param name="mainColor">Основной цвет кузова</param>
-        public BasicTANK(int maxSpeed, float weight, Color mainColor)
+        public  BasicTANK(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
         }
-        /// <summary>
-        /// Конструкторс изменением размеров машины
-        /// </summary>
-        /// <param name="maxSpeed">Максимальная скорость</param>
-        /// <param name="weight">Вес автомобиля</param>
-        /// <param name="mainColor">Основной цвет кузова</param>
-        /// <param name="tankWidth">Ширина отрисовки автомобиля</param>
-        /// <param name="tankHeight">Высота отрисовки автомобиля</param>
-        protected BasicTANK(int maxSpeed, float weight, Color mainColor, int tankWidth, int
-       tankHeight)
-        {
-            MaxSpeed = maxSpeed;
-            Weight = weight;
-            MainColor = mainColor;
-            this.tankWidth = tankWidth;
-            this.tankHeight = tankHeight;
-        }
+      
         public override void MoveTransport(Direction direction)
         {
             int step = (int)Math.Round(MaxSpeed * 100 / Weight);

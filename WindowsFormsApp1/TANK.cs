@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    public class TANK : BasicTANK
+    public  class TANK : BasicTANK
     {
         public Color DopColor { private set; get; }
 
@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
         /// <param name="backSpoiler">Признак наличия заднего спойлера</param>
         /// <param name="sportLine">Признак наличия гоночной полосы</param>
         public TANK(int maxSpeed, float weight, Color mainColor, Color DopColor, int wheel, int numPipes, int shipState) :
- base(maxSpeed, weight, Color.LightGray, 300, 100)
+ base(maxSpeed, weight, Color.LightGray)
         {
             this.luk = luk;
             this.dulo = dulo;

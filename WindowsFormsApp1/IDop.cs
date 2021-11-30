@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    interface IDop
+    public interface IDop
     {
         int Wheel { set; }
         void DrawDop(Graphics g, Point StarPosition, Color color);
