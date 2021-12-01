@@ -15,7 +15,9 @@ namespace WindowsFormsApp1
         /// <summary>
         /// Массив объектов, которые храним
         /// </summary>
-        private readonly T[] _places;
+        private readonly List<T> _places;
+        private readonly int _maxCount;
+
         /// <summary>
         /// Ширина окна отрисовки
         /// </summary>
@@ -42,9 +44,10 @@ namespace WindowsFormsApp1
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _places = new List<T>();
             pictureWidth = picWidth;
             pictureHeight = picHeight;
+            _maxCount = width * height;
         }
         /// <summary>
         /// Перегрузка оператора сложения
@@ -53,21 +56,14 @@ namespace WindowsFormsApp1
         /// <param name="p">Парковка</param>
         /// <param name="car">Добавляемый автомобиль</param>
         /// <returns></returns>
-        public static int operator +(Parking<T, W> p, T tank)
+        public static bool operator +(Parking<T, W> p, T tank)
         {
-            int width = p.pictureWidth / p._placeSizeWidth;
-            for (int i = 0; i < p._places.Length; i++)
+            if (p._places.Count >= p._maxCount)
             {
-                if (p._places[i] == null)
-                {
-                    p._places[i] = tank;
-                    tank.SetPosition(i % width * p._placeSizeWidth + 5,
-                    (i / width * p._placeSizeHeight + 5), p.pictureWidth, p.pictureHeight);
-
-                    return i;
-                }
+                return false;
             }
-            return -1;
+            p._places.Add(tank);
+            return true;
         }
         /// <summary>
         /// Перегрузка оператора вычитания
@@ -78,56 +74,35 @@ namespace WindowsFormsApp1
         /// <returns></returns>
         public static T operator -(Parking<T, W> p, int index)
         {
-            if ((index < p._places.Length) && (index >= 0))
+            if (index < -1 || index > p._places.Count)
             {
-                T tank = p._places[index];
-                p._places[index] = null;
-                return tank;
+                return null;
             }
-            return null;
+            T tank = p._places[index];
+            p._places.RemoveAt(index);
+            return tank;
 
         }
-        public static bool operator >(Parking<T, W> p, Parking<T, W> p2)
+        public static bool operator >(Parking<T, W> p, int index)
         {
-            int x = 0;
-            int y = 0;
-
-            for (int i = 0; i < p._places.Length; i++)
-            {
-                if (p.CheckFreePlace(i))
-                {
-                    x += 1;
-                }
-                if (p2.CheckFreePlace(i))
-                {
-                    y += 1;
-                }
-            }
-            return x > y;
+            return p.count_operator() > index;
+        }
+        public static bool operator <(Parking<T, W> p, int index)
+        {
+            return p.count_operator() < index;
         }
 
-        public static bool operator <(Parking<T, W> p, Parking<T, W> p2)
+        public int count_operator()
         {
-            int x = 0;
-            int y = 0;
-
-            for (int i = 0; i < p._places.Length; i++)
+            int count = 0;
+            for (int i = 0; i < _places.Count; ++i)
             {
-                if (p.CheckFreePlace(i))
+                if (_places[i] != null)
                 {
-                    x += 1;
-                }
-                if (p2.CheckFreePlace(i))
-                {
-                    y += 1;
+                    count++;
                 }
             }
-            return y > x;
-
-        }
-        private bool CheckFreePlace(int indexPlace)
-        {
-            return _places[indexPlace] == null;
+            return count;
         }
         /// <summary>
         /// Метод отрисовки парковки
@@ -136,9 +111,11 @@ namespace WindowsFormsApp1
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i]?.DrawTransport(g);
+                _places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
+               _placeSizeHeight + 15, pictureWidth, pictureHeight);
+                _places[i].DrawTransport(g);
             }
         }
         /// <summary>
@@ -158,6 +135,17 @@ namespace WindowsFormsApp1
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
 
+            }
+        }
+        public T this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < _maxCount)
+                {
+                    return _places[index];
+                }
+                return null;
             }
         }
     }

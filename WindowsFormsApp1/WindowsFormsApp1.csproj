@@ -68,6 +68,7 @@
     <Compile Include="IDop.cs" />
     <Compile Include="ITranspot.cs" />
     <Compile Include="Parking.cs" />
+    <Compile Include="ParkingCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TANK.cs" />

@@ -29,13 +29,13 @@ namespace WindowsFormsApp1
         /// <param name="sideSpoiler">Признак наличия боковых спойлеров</param>
         /// <param name="backSpoiler">Признак наличия заднего спойлера</param>
         /// <param name="sportLine">Признак наличия гоночной полосы</param>
-        public TANK(int maxSpeed, float weight, Color mainColor, Color DopColor, int wheel, int numPipes, int shipState) :
- base(maxSpeed, weight, Color.LightGray)
+        public TANK(int maxSpeed, bool dulo, Color MainColor, Color DopCol, bool luk, int numPipes, int shipState) :
+ base(DopCol, 6, 2)
         {
             this.luk = luk;
             this.dulo = dulo;
-            Wheel = wheel;
-            DopColor = DopColor;
+           // Wheel = wheel;
+            DopColor = DopCol;
             switch (shipState)
             {
                 case 0:
@@ -56,23 +56,18 @@ namespace WindowsFormsApp1
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            Brush brush = new SolidBrush(Color.Red);
+            Brush brushDop = new SolidBrush(DopColor);
+
+            Brush d = new SolidBrush(Color.Green);
             base.DrawTransport(g);
-
-
+            if (dulo){
+            g.FillRectangle(brushDop, StartPosition.X + 140, StartPosition.Y + 15, 80, 10);
+            }
+            if (luk)
+            {
+                g.FillRectangle(d, StartPosition.X + 100, StartPosition.Y, 20, 10);
+            }
             idop.DrawDop(g, StartPosition, Color.LightGray);
-            //if (dulo)
-
-            //дуло
-            Brush dulo = new SolidBrush(Color.Green);
-            g.FillRectangle(dulo, StartPosition.X + 140, StartPosition.Y + 15, 80, 10);
-
-            // if (luk)
-
-            // люк
-            Brush luk = new SolidBrush(Color.Blue);
-            g.FillRectangle(luk, StartPosition.X + 100, StartPosition.Y, 20, 10);
-
         }
     }
 }

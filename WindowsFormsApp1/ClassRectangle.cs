@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    class ClassRectangle : IDop
+    public class ClassRectangle : IDop
     {
         private DirectionRod dopEnum;
         public int Wheel { set => dopEnum = (DirectionRod)value; }
