@@ -69,7 +69,7 @@ namespace WindowsFormsApp1
             Pen pen = new Pen(Color.Black);
 
             //прямоугльники
-            Brush br = new SolidBrush(Color.Yellow);
+            Brush br = new SolidBrush(MainColor);
             g.DrawRectangle(pen, StartPosition.X + 80, StartPosition.Y + 10, 60, 20);
             g.DrawRectangle(pen, StartPosition.X + 40, StartPosition.Y + 30, 150, 20);
             g.FillRectangle(br, StartPosition.X + 40, StartPosition.Y + 30, 149, 19);

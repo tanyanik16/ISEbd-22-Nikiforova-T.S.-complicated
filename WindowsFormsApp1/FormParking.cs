@@ -56,10 +56,7 @@ namespace WindowsFormsApp1
                 pictureBoxParking.Image = bmp;
             }
         }
-        private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Draw();
-        }
+      
         public  void buttonTank_Click(object sender, EventArgs e)
         {
            
@@ -105,7 +102,10 @@ namespace WindowsFormsApp1
                 
             }
         }
-
+        private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Draw();
+        }
         private void buttonZ_Click(object sender, EventArgs e)
         {
             if(listBoxParking.SelectedIndex > -1 && maskedTextBoxParking.Text != "")
@@ -148,9 +148,6 @@ namespace WindowsFormsApp1
                 }
             }
         }
-
-       
-
         private void buttonStack_Click(object sender, EventArgs e)
         {
             if (TankStack.Count() > 0)
