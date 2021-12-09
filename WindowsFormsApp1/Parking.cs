@@ -58,9 +58,9 @@ namespace WindowsFormsApp1
         /// <returns></returns>
         public static bool operator +(Parking<T, W> p, T tank)
         {
-            if (p._places.Count >= p._maxCount)
+            if(p._places.Count >= p._maxCount)
             {
-                return false;
+                throw new OverflowException();
             }
             p._places.Add(tank);
             return true;
@@ -76,7 +76,7 @@ namespace WindowsFormsApp1
         {
             if (index < -1 || index > p._places.Count)
             {
-                return null;
+                throw new ParkingNotFoundException(index);
             }
             T tank = p._places[index];
             p._places.RemoveAt(index);
@@ -113,8 +113,8 @@ namespace WindowsFormsApp1
             DrawMarking(g);
             for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
-               _placeSizeHeight + 15, pictureWidth, pictureHeight);
+                _places[i].SetPosition( i / (pictureHeight / _placeSizeHeight) * _placeSizeWidth , i % (pictureHeight / _placeSizeHeight) *
+               _placeSizeHeight + 27, pictureWidth, pictureHeight);
                 _places[i].DrawTransport(g);
             }
         }
@@ -129,11 +129,11 @@ namespace WindowsFormsApp1
             {
                 for (int j = 0; j < pictureHeight / _placeSizeHeight + 1; ++j)
                 {//линия рамзетки места
-                    g.DrawLine(pen, i * _placeSizeWidth, j * _placeSizeHeight, i *
- _placeSizeWidth + _placeSizeWidth / 2, j * _placeSizeHeight);
+                    g.DrawLine(pen, i * _placeSizeWidth, j * _placeSizeHeight+20, i *
+ _placeSizeWidth + _placeSizeWidth / 2+20, j * _placeSizeHeight+20);
                 }
-                g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
-               (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
+                g.DrawLine(pen, i * _placeSizeWidth, 0+20, i * _placeSizeWidth,
+               (pictureHeight / _placeSizeHeight) * _placeSizeHeight+20);
 
             }
         }
