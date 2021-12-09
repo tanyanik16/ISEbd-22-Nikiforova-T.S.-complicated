@@ -17,19 +17,29 @@ namespace WindowsFormsApp1
         /// Высота отрисовки автомобиля
         /// </summary>
         protected readonly int tankHeight = 100;
+        protected readonly char separator = ';';
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="maxSpeed">Максимальная скорость</param>
         /// <param name="weight">Вес автомобиля</param>
         /// <param name="mainColor">Основной цвет кузова</param>
-        public  BasicTANK(Color mainColor, int maxSpeed, int weight)
+        public BasicTANK(Color mainColor, int maxSpeed, int weight)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
         }
-      
+        public BasicTANK(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
         public override void MoveTransport(Direction direction)
         {
             int step = (int)Math.Round(MaxSpeed * 100 / Weight);
@@ -88,6 +98,10 @@ namespace WindowsFormsApp1
             g.DrawEllipse(pen, _startPosX + 30, _startPosY + 50, 170, 40);
             g.DrawEllipse(pen, _startPosX + 25, _startPosY + 45, 180, 50);
 
+        }
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }

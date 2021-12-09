@@ -55,6 +55,31 @@ namespace WindowsFormsApp1
 
         }
         /// <summary>
+        /// Конструктор для загрузки с файла
+        /// </summary>
+        /// <param name="info"></param>
+        public TANK(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 9)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                dulo = Convert.ToBoolean(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                luk = Convert.ToBoolean(strs[4]);
+                Form1 = strs[6];
+                Doors = Convert.ToBoolean(strs[7]);
+
+            }
+        }
+        public override string ToString()
+        {
+            return
+           $"{base.ToString()}{separator}{DopColor.Name}{separator}{dulo}{separator}{luk}{separator }{Doors}{ separator}{MaxSpeed }{separator }{MainColor}{ separator}{Form1}{ separator}{Doors}{ separator}";
+        }
+        
+        /// <summary>
         /// Отрисовка автомобиля
         /// </summary>
         /// <param name="g"></param>

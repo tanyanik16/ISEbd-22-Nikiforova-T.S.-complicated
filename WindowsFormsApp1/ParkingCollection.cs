@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace WindowsFormsApp1
 {
@@ -27,6 +28,7 @@ namespace WindowsFormsApp1
         /// Высота окна отрисовки
         /// </summary>
         private readonly int pictureHeight;
+        private readonly char separator = ':';
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -90,6 +92,209 @@ namespace WindowsFormsApp1
                     return parkingStages[ind][ind2];
                 }
                 return null;
+            }
+        }
+        /// <summary>
+        /// Метод записи информации в файл
+        /// </summary>
+        /// <param name="text">Строка, которую следует записать</param>
+        /// <param name="stream">Поток для записи</param>
+        private void WriteToFile(string text, FileStream stream)
+        {
+            byte[] info = new UTF8Encoding(true).GetBytes(text);
+            stream.Write(info, 0, info.Length);
+        }
+        /// <summary>
+        /// Сохранение информации по автомобилям на парковках в файл
+        /// </summary>
+        /// <param name="filename">Путь и имя файла</param>
+        /// <returns></returns>
+        public bool SaveData(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    sw.WriteLine($"ParkingCollection");
+
+                    foreach (var level in parkingStages)
+                    {
+                        sw.WriteLine($"Station{separator}{level.Key}");
+                        ITransport tank = null;
+                        for (int i = 0; (tank = level.Value[i]) != null; i++)
+                        {
+                            if (tank != null)
+                            {
+                                if (tank.GetType().Name == "BasicTANK")
+                                {
+                                    sw.Write($"BasicTANK{separator}");
+
+                                }
+                                if (tank.GetType().Name == "TANK")
+                                {
+                                    sw.Write($"TANK{separator}");
+                                }
+                                //Записываемые параметры
+                                sw.WriteLine(tank);
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        public bool SaveData(string filename, string dockName)
+        {
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+            if (!parkingStages.ContainsKey(dockName))
+            {
+                return false;
+            }
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    sw.WriteLine($"OneTankStation");
+
+                    sw.WriteLine($"Station{separator}{dockName}");
+                    ITransport tank = null;
+                    var level = parkingStages[dockName];
+
+
+                    for (int i = 0; (tank = level[i]) != null; i++)
+                    {
+                        if (tank != null)
+                        {
+                            if (tank.GetType().Name == "BasicTANK")
+                            {
+                                sw.Write($"BasicTANK{separator}");
+
+                            }
+                            if (tank.GetType().Name == "TANK")
+                            {
+                                sw.Write($"TANK{separator}");
+                            }
+                            //Записываемые параметры
+                            sw.WriteLine(tank);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        public bool LoadParkingCollection(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return false;
+            }
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                string line = sr.ReadLine();
+                if (line.Contains("BusStationCollection"))
+                {
+                    //очищаем записи
+                    parkingStages.Clear();
+                }
+                else
+                {
+                    //если нет такой записи, то это не те данные
+                    return false;
+                }
+                line = sr.ReadLine();
+                Vehicle tank = null;
+                string key = string.Empty;
+                while (line != null && line.Contains("Station"))
+                {
+                    key = line.Split(separator)[1];
+                    parkingStages.Add(key, new Parking<Vehicle, ClassRectangle>(pictureWidth, pictureHeight));
+
+                    line = sr.ReadLine();
+                    while (line != null && (line.Contains("BasicTANK") || line.Contains("TANK")))
+                    {
+                        if (line.Split(separator)[0] == "BasicTANK")
+                        {
+                            tank = new BasicTANK(line.Split(separator)[1]);
+                        }
+                        else if (line.Split(separator)[0] == "TANK")
+                        {
+                            tank = new TANK(line.Split(separator)[1]);
+                        }
+                        var result = parkingStages[key] + tank;
+                        if (!result)
+                        {
+                            return false;
+                        }
+                        line = sr.ReadLine();
+                    }
+                }
+                return true;
+            }
+        }
+        /// <summary>
+        /// Загрузка нформации по автомобилям на парковках из файла
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public bool LoadParking(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return false;
+            }
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                string line = sr.ReadLine();
+
+                if (line.Contains("OneTankStation")) { }
+                else
+                {
+                    //если нет такой записи, то это не те данные
+                    return false;
+                }
+                line = sr.ReadLine();
+                Vehicle tank = null;
+                string key = string.Empty;
+                if (line != null && line.Contains("Station"))
+                {
+                    key = line.Split(separator)[1];
+                    if (parkingStages.ContainsKey(key))
+                    {
+                        parkingStages[key].ClearPlaces();
+                    }
+                    else
+                    {
+                        parkingStages.Add(key, new Parking<Vehicle, ClassRectangle>(pictureWidth, pictureHeight));
+                    }
+
+                    line = sr.ReadLine();
+                    while (line != null && (line.Contains("BasicTANK") || line.Contains("TANK")))
+                    {
+                        if (line.Split(separator)[0] == "BasicTANK")
+                        {
+                            tank = new BasicTANK(line.Split(separator)[1]);
+                        }
+                        else if (line.Split(separator)[0] == "TANK")
+                        {
+                            tank = new TANK(line.Split(separator)[1]);
+                        }
+                        var result = parkingStages[key] + tank;
+                        if (!result)
+                        {
+                            return false;
+                        }
+                        line = sr.ReadLine();
+                    }
+                }
+                else return false;
+                return true;
             }
         }
     }      
