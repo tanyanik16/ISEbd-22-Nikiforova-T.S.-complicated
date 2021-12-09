@@ -10,6 +10,6 @@ namespace WindowsFormsApp1
     public interface IDop
     {
         int Wheel { set; }
-        void DrawDop(Graphics g, Point StarPosition, Color color);
+        void DrawDop(Graphics g, Color dopColor, float x, float y);
     }
 }

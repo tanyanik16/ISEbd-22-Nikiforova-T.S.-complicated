@@ -37,9 +37,13 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonCreateModTank = new System.Windows.Forms.Button();
-            this.comboBoxType = new System.Windows.Forms.ComboBox();
+            this.groupBoxF = new System.Windows.Forms.GroupBox();
+            this.checkBoxTriangle = new System.Windows.Forms.CheckBox();
+            this.checkBoxRound = new System.Windows.Forms.CheckBox();
+            this.checkBoxRectangle = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTanks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBoxF.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCreate
@@ -65,10 +69,6 @@
             // comboRod
             // 
             this.comboRod.FormattingEnabled = true;
-            this.comboRod.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
             this.comboRod.Location = new System.Drawing.Point(622, 246);
             this.comboRod.Margin = new System.Windows.Forms.Padding(4);
             this.comboRod.Name = "comboRod";
@@ -141,25 +141,54 @@
             this.buttonCreateModTank.UseVisualStyleBackColor = true;
             this.buttonCreateModTank.Click += new System.EventHandler(this.buttonCreateModTank_Click);
             // 
-            // comboBoxType
+            // groupBoxF
             // 
-            this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Items.AddRange(new object[] {
-            "Круг",
-            "Квадрат",
-            "Треугольник"});
-            this.comboBoxType.Location = new System.Drawing.Point(622, 277);
-            this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(156, 24);
-            this.comboBoxType.TabIndex = 8;
-            this.comboBoxType.Text = "Тип орудия";
+            this.groupBoxF.Controls.Add(this.checkBoxTriangle);
+            this.groupBoxF.Controls.Add(this.checkBoxRound);
+            this.groupBoxF.Controls.Add(this.checkBoxRectangle);
+            this.groupBoxF.Location = new System.Drawing.Point(635, 15);
+            this.groupBoxF.Name = "groupBoxF";
+            this.groupBoxF.Size = new System.Drawing.Size(142, 128);
+            this.groupBoxF.TabIndex = 9;
+            this.groupBoxF.TabStop = false;
+            this.groupBoxF.Text = "groupBox1";
+            // 
+            // checkBoxTriangle
+            // 
+            this.checkBoxTriangle.AutoSize = true;
+            this.checkBoxTriangle.Location = new System.Drawing.Point(16, 81);
+            this.checkBoxTriangle.Name = "checkBoxTriangle";
+            this.checkBoxTriangle.Size = new System.Drawing.Size(116, 21);
+            this.checkBoxTriangle.TabIndex = 2;
+            this.checkBoxTriangle.Text = "Треугольные";
+            this.checkBoxTriangle.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRound
+            // 
+            this.checkBoxRound.AutoSize = true;
+            this.checkBoxRound.Location = new System.Drawing.Point(16, 55);
+            this.checkBoxRound.Name = "checkBoxRound";
+            this.checkBoxRound.Size = new System.Drawing.Size(85, 21);
+            this.checkBoxRound.TabIndex = 1;
+            this.checkBoxRound.Text = "Круглые";
+            this.checkBoxRound.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxRectangle
+            // 
+            this.checkBoxRectangle.AutoSize = true;
+            this.checkBoxRectangle.Location = new System.Drawing.Point(16, 28);
+            this.checkBoxRectangle.Name = "checkBoxRectangle";
+            this.checkBoxRectangle.Size = new System.Drawing.Size(111, 21);
+            this.checkBoxRectangle.TabIndex = 0;
+            this.checkBoxRectangle.Text = "Квадратные";
+            this.checkBoxRectangle.UseVisualStyleBackColor = true;
             // 
             // FormTank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.comboBoxType);
+            this.Controls.Add(this.groupBoxF);
             this.Controls.Add(this.buttonCreateModTank);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonRight);
@@ -173,6 +202,8 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTanks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBoxF.ResumeLayout(false);
+            this.groupBoxF.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -188,7 +219,10 @@
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonCreateModTank;
-        private System.Windows.Forms.ComboBox comboBoxType;
+        private System.Windows.Forms.GroupBox groupBoxF;
+        private System.Windows.Forms.CheckBox checkBoxTriangle;
+        private System.Windows.Forms.CheckBox checkBoxRound;
+        private System.Windows.Forms.CheckBox checkBoxRectangle;
     }
 }
 

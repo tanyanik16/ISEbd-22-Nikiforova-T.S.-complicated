@@ -78,29 +78,9 @@ namespace WindowsFormsApp1
 
         private void buttonModTank_Click(object sender, EventArgs e)
         {
-            if (listBoxParking.SelectedIndex > -1)
-            {
-                
-                    ColorDialog dialog = new ColorDialog();
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        ColorDialog dialogDop = new ColorDialog();
-                        if (dialogDop.ShowDialog() == DialogResult.OK)
-                        {
-                            var tank = new TANK(100, true, dialog.Color,
-                           dialogDop.Color, true, 2, 2);
-                            if (stationCollection[listBoxParking.SelectedItem.ToString()] + tank)
-                            {
-                                Draw();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Парковка переполнена");
-                            }
-                        }
-                    }
-                
-            }
+            var formTankConfig = new FormTankConfig();
+            formTankConfig.AddEvent(Addtank);
+            formTankConfig.Show();
         }
         private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -119,7 +99,24 @@ namespace WindowsFormsApp1
                 Draw();
             }
         }
-        
+        /// <summary>
+        /// Метод добавления машины
+        /// </summary>
+        /// <param name="car"></param>
+        private void Addtank(Vehicle tank)
+        {
+            if (tank != null && listBoxParking.SelectedIndex > -1)
+            {
+                if ((stationCollection[listBoxParking.SelectedItem.ToString()]) + tank)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Машину не удалось поставить");
+                }
+            }
+        }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxParking.Text))

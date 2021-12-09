@@ -36,16 +36,20 @@ namespace WindowsFormsApp1
         /// <summary>
         /// Основной цвет кузова
         /// </summary>
-        protected Point StartPosition;
+    
         public Color MainColor { protected set; get; }
         public void SetPosition(int x, int y, int width, int height)
         {
-            StartPosition.X = x;
-            StartPosition.Y = y;
+            _startPosX = x;
+            _startPosY = y;
             _pictureHeight = height;
             _pictureWidth = width;
         }
         public abstract void DrawTransport(Graphics g);
+        public void SetMainColor(Color color)
+        {
+            MainColor = color;
+        }
         public abstract void MoveTransport(Direction direction);
     }
 }
