@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
 {
     public class Parking<T, W>
          where T : class, ITransport
-         where W : IDop
+         where W : class, IDop
     {
         /// <summary>
         /// Массив объектов, которые храним
@@ -141,12 +141,17 @@ namespace WindowsFormsApp1
         {
             get
             {
-                if (index >= 0 && index < _maxCount)
+                if (index >= 0 && index < _places.Count)
                 {
                     return _places[index];
                 }
                 return null;
             }
+        }
+        
+        public void ClearPlaces()
+        {
+            _places.Clear();
         }
     }
 }
