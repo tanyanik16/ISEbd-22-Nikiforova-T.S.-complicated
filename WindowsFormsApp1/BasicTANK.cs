@@ -36,30 +36,30 @@ namespace WindowsFormsApp1
             switch (direction)
             {// вправо
                 case Direction.Right:
-                    if (StartPosition.X + step < _pictureWidth - tankWidth)
+                    if (_startPosX + step < _pictureWidth - tankWidth)
                     {
-                        StartPosition.X += step;
+                        _startPosX += step;
                     }
                     break;
                 //влево
                 case Direction.Left:
-                    if (StartPosition.X - step > 40) // ??
+                    if (_startPosX - step > 40) // ??
                     {
-                        StartPosition.X -= step;
+                        _startPosX -= step;
                     }
                     break;
                 //вверх
                 case Direction.Up:
-                    if (StartPosition.Y - step > 40) // ?? 
+                    if (_startPosY - step > 40) // ?? 
                     {
-                        StartPosition.Y -= step;
+                        _startPosY -= step;
                     }
                     break;
                 //вниз
                 case Direction.Down:
-                    if (StartPosition.Y + step < _pictureHeight - tankHeight)
+                    if (_startPosY + step < _pictureHeight - tankHeight)
                     {
-                        StartPosition.Y += step;
+                        _startPosY += step;
                     }
                     break;
             }
@@ -70,23 +70,23 @@ namespace WindowsFormsApp1
 
             //прямоугльники
             Brush br = new SolidBrush(MainColor);
-            g.DrawRectangle(pen, StartPosition.X + 80, StartPosition.Y + 10, 60, 20);
-            g.DrawRectangle(pen, StartPosition.X + 40, StartPosition.Y + 30, 150, 20);
-            g.FillRectangle(br, StartPosition.X + 40, StartPosition.Y + 30, 149, 19);
-            g.FillRectangle(br, StartPosition.X + 80, StartPosition.Y + 10, 59, 19);
+            g.DrawRectangle(pen, _startPosX + 80, _startPosY + 10, 60, 20);
+            g.DrawRectangle(pen, _startPosX + 40, _startPosY + 30, 150, 20);
+            g.FillRectangle(br, _startPosX + 40, _startPosY + 30, 149, 19);
+            g.FillRectangle(br, _startPosX + 80, _startPosY + 10, 59, 19);
 
             //колеса
             Brush brYellow = new SolidBrush(Color.Yellow);
-            g.DrawEllipse(pen, StartPosition.X + 40, StartPosition.Y + 60, 20, 20);
-            g.DrawEllipse(pen, StartPosition.X + 75, StartPosition.Y + 70, 10, 10);
-            g.DrawEllipse(pen, StartPosition.X + 95, StartPosition.Y + 70, 10, 10);
-            g.DrawEllipse(pen, StartPosition.X + 115, StartPosition.Y + 70, 10, 10);
-            g.DrawEllipse(pen, StartPosition.X + 135, StartPosition.Y + 70, 10, 10);
-            g.DrawEllipse(pen, StartPosition.X + 170, StartPosition.Y + 60, 20, 20);
+            g.DrawEllipse(pen, _startPosX + 40, _startPosY + 60, 20, 20);
+            g.DrawEllipse(pen, _startPosX + 75, _startPosY + 70, 10, 10);
+            g.DrawEllipse(pen, _startPosX + 95, _startPosY + 70, 10, 10);
+            g.DrawEllipse(pen, _startPosX + 115, _startPosY + 70, 10, 10);
+            g.DrawEllipse(pen, _startPosX + 135, _startPosY + 70, 10, 10);
+            g.DrawEllipse(pen, _startPosX + 170, _startPosY + 60, 20, 20);
             //гусеница
 
-            g.DrawEllipse(pen, StartPosition.X + 30, StartPosition.Y + 50, 170, 40);
-            g.DrawEllipse(pen, StartPosition.X + 25, StartPosition.Y + 45, 180, 50);
+            g.DrawEllipse(pen, _startPosX + 30, _startPosY + 50, 170, 40);
+            g.DrawEllipse(pen, _startPosX + 25, _startPosY + 45, 180, 50);
 
         }
     }

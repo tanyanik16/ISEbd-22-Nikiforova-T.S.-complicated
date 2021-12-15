@@ -12,14 +12,11 @@ namespace WindowsFormsApp1
 {
     public partial class FormTank : Form
     {
-         ITransport tank;
+        private ITransport tank;
         public FormTank()
         {
             InitializeComponent();
-            comboRod.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxType.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboRod.SelectedIndex = 2;
-            comboBoxType.SelectedIndex = 0;
+            comboRod.Items.AddRange(new string[] { "1", "2", "3" });
         }
         public void SetTank(ITransport tank)
         {
@@ -66,8 +63,12 @@ namespace WindowsFormsApp1
         private void buttonCreateModTank_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
+            int count = Convert.ToInt32(comboRod.SelectedItem);
+            string Form1 = (checkBoxTriangle.Checked && !checkBoxRectangle.Checked && !checkBoxRound.Checked) ? "ClassRectangle" :
+                (!checkBoxTriangle.Checked && checkBoxRectangle.Checked && !checkBoxRound.Checked) ? "ClassTreygol" :
+                (!checkBoxTriangle.Checked && !checkBoxRectangle.Checked && checkBoxRound.Checked ? "ClassKrug" : "0");
             tank = new TANK(rnd.Next(100, 300), true, Color.Blue,
-           Color.Red,true, comboRod.SelectedIndex, comboBoxType.SelectedIndex);
+           Color.Red, true, count, Form1,true);
             tank.SetPosition(rnd.Next(50, 100), rnd.Next(50, 100), pictureBoxTanks.Width,
            pictureBoxTanks.Height);
             Draw();

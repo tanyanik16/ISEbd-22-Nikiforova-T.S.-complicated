@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
-            this.buttonTank = new System.Windows.Forms.Button();
             this.buttonModTank = new System.Windows.Forms.Button();
             this.groupBoxParking = new System.Windows.Forms.GroupBox();
             this.buttonZ = new System.Windows.Forms.Button();
@@ -53,23 +52,13 @@
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
             // 
-            // buttonTank
-            // 
-            this.buttonTank.Location = new System.Drawing.Point(678, 13);
-            this.buttonTank.Name = "buttonTank";
-            this.buttonTank.Size = new System.Drawing.Size(113, 44);
-            this.buttonTank.TabIndex = 1;
-            this.buttonTank.Text = "Припарковать танк";
-            this.buttonTank.UseVisualStyleBackColor = true;
-            this.buttonTank.Click += new System.EventHandler(this.buttonTank_Click);
-            // 
             // buttonModTank
             // 
-            this.buttonModTank.Location = new System.Drawing.Point(678, 63);
+            this.buttonModTank.Location = new System.Drawing.Point(681, 26);
             this.buttonModTank.Name = "buttonModTank";
             this.buttonModTank.Size = new System.Drawing.Size(112, 58);
             this.buttonModTank.TabIndex = 2;
-            this.buttonModTank.Text = "Припарковать мод. танк";
+            this.buttonModTank.Text = "Добавить танк";
             this.buttonModTank.UseVisualStyleBackColor = true;
             this.buttonModTank.Click += new System.EventHandler(this.buttonModTank_Click);
             // 
@@ -170,7 +159,6 @@
             this.Controls.Add(this.listBoxParking);
             this.Controls.Add(this.groupBoxParking);
             this.Controls.Add(this.buttonModTank);
-            this.Controls.Add(this.buttonTank);
             this.Controls.Add(this.pictureBoxParking);
             this.Name = "FormParking";
             this.Text = "FormParking";
@@ -185,7 +173,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button buttonTank;
         private System.Windows.Forms.Button buttonModTank;
         private System.Windows.Forms.GroupBox groupBoxParking;
         private System.Windows.Forms.Button buttonZ;

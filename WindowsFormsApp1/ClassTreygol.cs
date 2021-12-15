@@ -10,39 +10,81 @@ namespace WindowsFormsApp1
     class ClassTreygol : IDop
     {
         private DirectionRod dopEnum;
-        Color dopColor2;
+        public Color DopColor { private set; get; }
         public int Wheel { set => dopEnum = (DirectionRod)value; }
-          public Color DopColor { private set; get; }
-        public ClassTreygol(int x, Color dopColor2)
+       
+        public ClassTreygol(int x, Color dopColor)
         {
             Wheel = x;
-            this.dopColor2 = dopColor2;
+            DopColor = dopColor;
         }
 
-        public void DrawDop(Graphics g, Point StartPosition, Color color)
+        public void DrawDop(Graphics g, Color dopColor, float _startPosX, float _startPosY)
         {
-            Brush brush = new SolidBrush(Color.Red);
-            PointF One1 = new PointF(StartPosition.X + 83, StartPosition.Y + 55);
-            PointF Two1 = new PointF(StartPosition.X + 88, StartPosition.Y + 40);
-            PointF Three1 = new PointF(StartPosition.X + 95, StartPosition.Y + 55);
+            switch (dopEnum)
+            {
+                case DirectionRod.One:
+                    DrawOne(g, dopColor, _startPosX, _startPosY);
+                    break;
+
+                case DirectionRod.Two:
+                    DrawTwo(g, dopColor, _startPosX, _startPosY);
+                    break;
+
+                case DirectionRod.Three:
+                    DrawThree(g, dopColor, _startPosX, _startPosY);
+                    break;
+            }
+        }
+
+        public void DrawOne(Graphics g, Color dopColor, float x, float y)
+        {
+            Brush brushDop2 = Brushes.Red;
+         
+            PointF One1 = new PointF(x + 83, y + 55);
+            PointF Two1 = new PointF(x + 88, y + 40);
+            PointF Three1 = new PointF(x + 95, y + 55);
             PointF[] points1 = { One1, Two1, Three1 };
-            g.FillPolygon(brush, points1);
-            if (dopEnum == DirectionRod.One || dopEnum == DirectionRod.Two)
-            {
-                PointF One2 = new PointF(StartPosition.X + 113, StartPosition.Y + 55);
-                PointF Two2 = new PointF(StartPosition.X + 118, StartPosition.Y + 40);
-                PointF Three2 = new PointF(StartPosition.X + 125, StartPosition.Y + 55);
-                PointF[] points2 = { One2, Two2, Three2 };
-                g.FillPolygon(brush, points2);
-            }
-            if (dopEnum == DirectionRod.Two || dopEnum == DirectionRod.Three)
-            {
-                PointF One3 = new PointF(StartPosition.X + 143, StartPosition.Y + 55);
-                PointF Two3 = new PointF(StartPosition.X + 148, StartPosition.Y + 40);
-                PointF Three3 = new PointF(StartPosition.X + 155, StartPosition.Y + 55);
-                PointF[] points3 = { One3, Two3, Three3 };
-                g.FillPolygon(brush, points3);
-            }
+            g.FillPolygon(brushDop2, points1);
+        }
+
+        public void DrawTwo(Graphics g, Color dopColor, float x, float y)
+        {
+            Brush brushDop2 = Brushes.Red;
+            PointF One1 = new PointF(x + 83, y + 55);
+            PointF Two1 = new PointF(x + 88, y + 40);
+            PointF Three1 = new PointF(x + 95, y + 55);
+            PointF[] points1 = { One1, Two1, Three1 };
+            g.FillPolygon(brushDop2, points1);
+
+            Brush brush = new SolidBrush(Color.Red);
+            PointF One2 = new PointF(x + 113, y + 55);
+            PointF Two2 = new PointF(x+ 118, y + 40);
+            PointF Three2 = new PointF(x + 125, y + 55);
+            PointF[] points2 = { One2, Two2, Three2 };
+            g.FillPolygon(brush, points2);
+        }
+        public void DrawThree(Graphics g, Color dopColor, float x, float y)
+        {
+            Brush brushDop2 = Brushes.Red;
+            PointF One1 = new PointF(x + 83, y + 55);
+            PointF Two1 = new PointF(x + 88, y + 40);
+            PointF Three1 = new PointF(x + 95, y + 55);
+            PointF[] points1 = { One1, Two1, Three1 };
+            g.FillPolygon(brushDop2, points1);
+
+            Brush brush = new SolidBrush(Color.Red);
+            PointF One2 = new PointF(x + 113, y + 55);
+            PointF Two2 = new PointF(x + 118, y + 40);
+            PointF Three2 = new PointF(x + 125, y + 55);
+            PointF[] points2 = { One2, Two2, Three2 };
+            g.FillPolygon(brush, points2);
+
+            PointF One3 = new PointF(x + 143, y + 55);
+            PointF Two3 = new PointF(x + 148, y + 40);
+            PointF Three3 = new PointF(x + 155, y + 55);
+            PointF[] points3 = { One3, Two3, Three3 };
+            g.FillPolygon(brush, points3);
         }
     }
 }
