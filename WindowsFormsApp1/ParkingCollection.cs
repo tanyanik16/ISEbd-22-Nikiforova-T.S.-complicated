@@ -120,7 +120,6 @@ namespace WindowsFormsApp1
                 using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                 {
                     sw.WriteLine($"ParkingCollection");
-
                     foreach (var level in parkingStages)
                     {
                         sw.WriteLine($"Station{separator}{level.Key}");
@@ -132,7 +131,6 @@ namespace WindowsFormsApp1
                                 if (tank.GetType().Name == "BasicTANK")
                                 {
                                     sw.Write($"BasicTANK{separator}");
-
                                 }
                                 if (tank.GetType().Name == "TANK")
                                 {
@@ -162,12 +160,9 @@ namespace WindowsFormsApp1
                 using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                 {
                     sw.WriteLine($"OneTankStation");
-
                     sw.WriteLine($"Station{separator}{dockName}");
                     ITransport tank = null;
                     var level = parkingStages[dockName];
-
-
                     for (int i = 0; (tank = level[i]) != null; i++)
                     {
                         if (tank != null)
@@ -175,7 +170,6 @@ namespace WindowsFormsApp1
                             if (tank.GetType().Name == "BasicTANK")
                             {
                                 sw.Write($"BasicTANK{separator}");
-
                             }
                             if (tank.GetType().Name == "TANK")
                             {
@@ -198,7 +192,7 @@ namespace WindowsFormsApp1
             using (StreamReader sr = new StreamReader(filename))
             {
                 string line = sr.ReadLine();
-                if (line.Contains("BusStationCollection"))
+                if (line.Contains("TankStationCollection"))
                 {
                     //очищаем записи
                     parkingStages.Clear();

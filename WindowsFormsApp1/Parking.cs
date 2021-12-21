@@ -60,7 +60,7 @@ namespace WindowsFormsApp1
         {
             if(p._places.Count >= p._maxCount)
             {
-                throw new OverflowException();
+                throw new ParkingOverflowException();
             }
             p._places.Add(tank);
             return true;

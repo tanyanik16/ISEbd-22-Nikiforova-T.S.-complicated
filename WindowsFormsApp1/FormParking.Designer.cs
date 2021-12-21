@@ -190,14 +190,14 @@
             // текущуюПарковкуToolStripMenuItem
             // 
             this.текущуюПарковкуToolStripMenuItem.Name = "текущуюПарковкуToolStripMenuItem";
-            this.текущуюПарковкуToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.текущуюПарковкуToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.текущуюПарковкуToolStripMenuItem.Text = "Текущую парковку";
             this.текущуюПарковкуToolStripMenuItem.Click += new System.EventHandler(this.текущуюПарковкуToolStripMenuItem_Click);
             // 
             // всеПарковкиToolStripMenuItem
             // 
             this.всеПарковкиToolStripMenuItem.Name = "всеПарковкиToolStripMenuItem";
-            this.всеПарковкиToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.всеПарковкиToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.всеПарковкиToolStripMenuItem.Text = "Все парковки";
             this.всеПарковкиToolStripMenuItem.Click += new System.EventHandler(this.всеПарковкиToolStripMenuItem_Click);
             // 

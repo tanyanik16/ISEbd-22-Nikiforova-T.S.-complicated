@@ -101,7 +101,7 @@ namespace WindowsFormsApp1
                     var tank = stationCollection[listBoxParking.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxParking.Text);
                     if (tank != null)
                     {
-                        logger.Info($"Изъят автобус {tank} с места { maskedTextBoxParking.Text}");
+                        logger.Info($"Изъят танк {tank} с места { maskedTextBoxParking.Text}");
                         TankStack.Push(tank);
                     }
                     maskedTextBoxParking.Text = "";
@@ -109,12 +109,12 @@ namespace WindowsFormsApp1
                 }
                 catch (ParkingNotFoundException ex)
                 {
-                    logger.Warn("Вызвана ошибка BusStationNotFoundException");
+                    logger.Warn("Вызвана ошибка ParkingNotFoundException");
                     MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 catch (Exception ex)
                 {
-                    logger.Fatal("Вызвана неизвестная ошибка изъятии автобуса с парковки");
+                    logger.Fatal("Вызвана неизвестная ошибка изъятии танка с парковки");
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -132,11 +132,11 @@ namespace WindowsFormsApp1
                     if ((stationCollection[listBoxParking.SelectedItem.ToString()]) + tank)
                     {
 
-                        logger.Info($"Добавлен автобус {tank}");
+                        logger.Info($"Добавлен танк {tank}");
                     }
                     else
                     {
-                        MessageBox.Show("Автобус не удалось поставить");
+                        MessageBox.Show("танк не удалось поставить");
                     }
                     Draw();
                 }
@@ -194,7 +194,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                MessageBox.Show("Стек пуст");
+                logger.Fatal("В стек занесено неправильное значение");
             }
         }
 
@@ -243,7 +243,6 @@ namespace WindowsFormsApp1
                 }
             }
         }
-
         private void однуПарковкуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
