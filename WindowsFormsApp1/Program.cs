@@ -8,6 +8,7 @@ namespace WindowsFormsApp1
 {
     static class Program
     {
+        public delegate void TankDelegate(Vehicle tank);
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

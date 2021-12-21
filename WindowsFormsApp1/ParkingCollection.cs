@@ -120,7 +120,6 @@ namespace WindowsFormsApp1
                 using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                 {
                     sw.WriteLine($"ParkingCollection");
-
                     foreach (var level in parkingStages)
                     {
                         sw.WriteLine($"Station{separator}{level.Key}");
@@ -132,7 +131,6 @@ namespace WindowsFormsApp1
                                 if (tank.GetType().Name == "BasicTANK")
                                 {
                                     sw.Write($"BasicTANK{separator}");
-
                                 }
                                 if (tank.GetType().Name == "TANK")
                                 {
@@ -162,12 +160,9 @@ namespace WindowsFormsApp1
                 using (StreamWriter sw = new StreamWriter(fs, Encoding.UTF8))
                 {
                     sw.WriteLine($"OneTankStation");
-
                     sw.WriteLine($"Station{separator}{dockName}");
                     ITransport tank = null;
                     var level = parkingStages[dockName];
-
-
                     for (int i = 0; (tank = level[i]) != null; i++)
                     {
                         if (tank != null)
@@ -175,7 +170,6 @@ namespace WindowsFormsApp1
                             if (tank.GetType().Name == "BasicTANK")
                             {
                                 sw.Write($"BasicTANK{separator}");
-
                             }
                             if (tank.GetType().Name == "TANK")
                             {
@@ -189,16 +183,16 @@ namespace WindowsFormsApp1
             }
             return true;
         }
-        public bool LoadParkingCollection(string filename)
+        public void LoadParkingCollection(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename))
             {
                 string line = sr.ReadLine();
-                if (line.Contains("BusStationCollection"))
+                if (line.Contains("TankStationCollection"))
                 {
                     //очищаем записи
                     parkingStages.Clear();
@@ -206,7 +200,7 @@ namespace WindowsFormsApp1
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new FormatException("Неверный формат файла");
                 }
                 line = sr.ReadLine();
                 Vehicle tank = null;
@@ -230,12 +224,12 @@ namespace WindowsFormsApp1
                         var result = parkingStages[key] + tank;
                         if (!result)
                         {
-                            return false;
+                            throw new NullReferenceException();
                         }
                         line = sr.ReadLine();
                     }
                 }
-                return true;
+                
             }
         }
         /// <summary>
@@ -243,11 +237,11 @@ namespace WindowsFormsApp1
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public bool LoadParking(string filename)
+        public void LoadParking(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             using (StreamReader sr = new StreamReader(filename))
             {
@@ -257,7 +251,7 @@ namespace WindowsFormsApp1
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new FormatException("Неверный формат файла");
                 }
                 line = sr.ReadLine();
                 Vehicle tank = null;
@@ -288,13 +282,12 @@ namespace WindowsFormsApp1
                         var result = parkingStages[key] + tank;
                         if (!result)
                         {
-                            return false;
+                             throw new NullReferenceException();
                         }
                         line = sr.ReadLine();
                     }
                 }
-                else return false;
-                return true;
+               
             }
         }
     }      
